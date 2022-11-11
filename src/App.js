@@ -1,44 +1,58 @@
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import "./styles.css";
 
 const App = () => {
   const [firstNum, setFirstNum] = useState("0");
   const [secondNum, setSecondNum] = useState("");
   const [operator, setOperator] = useState("");
-  const [result, setResult] = useState("");
 
-  const reset = (event) => {
+  const reset = () => {
     setFirstNum(0);
     setSecondNum("");
     setOperator("");
-    setResult("");
   };
 
   const OnClick = (event) => {
     if (
       typeof Number(event.target.textContent) === "number" &&
       !secondNum &&
-      !operator 
+      !operator
     ) {
       setFirstNum(Number(event.target.textContent));
-      console.log(firstNum);
-    }
-
-    if (
+    } else if (
       firstNum &&
       typeof Number(event.target.textContent) === "number" &&
       operator
     ) {
       setSecondNum(Number(event.target.textContent));
-      console.log(secondNum);
     }
   };
 
   const AddMinus = () => {
-    if (firstNum !== 0 && !secondNum) {
+    if(firstNum === 0){
+      return;
+    }
+    
+    if (firstNum !== 0 && !secondNum && !operator) {
       setFirstNum((prev) => "-" + prev);
     } else if (secondNum !== 0) {
-      setSecondNum((prev) => "(-" + prev +')');
+      setSecondNum((prev) => "-" + prev);
+    }
+  };
+
+  const Percentage = () => {
+    if (firstNum !== 0 && !secondNum) {
+      setFirstNum((prev) => prev / 100);
+    } else if (secondNum !== 0) {
+      setSecondNum((prev) => prev / 100);
+    }
+  };
+
+  const AddDigit = () => {
+    if (!secondNum) {
+      setFirstNum((prev) => prev + ".");
+    } else {
+      setSecondNum((prev) => prev + ".");
     }
   };
 
@@ -47,12 +61,11 @@ const App = () => {
     for (let i = 0; i < 4; i++) {
       if (event.target.textContent === operators[i]) {
         setOperator(event.target.textContent);
-        console.log(operator[i]);
       }
     }
   };
 
-  const Result = (event) => {
+  const Result = () => {
     let num1 = Number(firstNum);
     let num2 = Number(secondNum);
 
@@ -67,7 +80,9 @@ const App = () => {
       result = num1 / num2;
     }
 
-    setResult(`= ` + result);
+    setFirstNum(result);
+    setOperator("");
+    setSecondNum("");
   };
 
   return (
@@ -78,7 +93,6 @@ const App = () => {
             {firstNum}
             {operator}
             {secondNum}
-            {result}
           </p>
         </div>
         <div className="pad">
@@ -86,13 +100,13 @@ const App = () => {
             <button onClick={reset} className="gray">
               AC
             </button>
-            <button onClick={AddMinus} className="gray addMinus">
+            <button onClick={AddMinus} className="gray">
               +/-
             </button>
-            <button onClick={OnClick} className="gray">
+            <button onClick={Percentage} className="gray">
               %
             </button>
-            <button onClick={Operator} className="orange operator">
+            <button onClick={Operator} className="orange">
               ÷
             </button>
           </ul>
@@ -100,7 +114,7 @@ const App = () => {
             <button onClick={OnClick}>7</button>
             <button onClick={OnClick}>8</button>
             <button onClick={OnClick}>9</button>
-            <button onClick={Operator} className="orange operator">
+            <button onClick={Operator} className="orange">
               ✕
             </button>
           </ul>
@@ -108,7 +122,7 @@ const App = () => {
             <button onClick={OnClick}>4</button>
             <button onClick={OnClick}>5</button>
             <button onClick={OnClick}>6</button>
-            <button onClick={Operator} className="orange operator">
+            <button onClick={Operator} className="orange">
               –
             </button>
           </ul>
@@ -116,7 +130,7 @@ const App = () => {
             <button onClick={OnClick}>1</button>
             <button onClick={OnClick}>2</button>
             <button onClick={OnClick}>3</button>
-            <button onClick={Operator} className="orange operator">
+            <button onClick={Operator} className="orange">
               +
             </button>
           </ul>
@@ -124,7 +138,7 @@ const App = () => {
             <button onClick={OnClick} className="zero">
               0
             </button>
-            <button onClick={OnClick}>.</button>
+            <button onClick={AddDigit}>.</button>
             <button onClick={Result} className="orange">
               =
             </button>

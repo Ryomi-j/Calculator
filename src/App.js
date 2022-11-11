@@ -7,32 +7,28 @@ const App = () => {
   const [operator, setOperator] = useState("");
 
   const reset = () => {
-    setFirstNum(0);
+    setFirstNum("0");
     setSecondNum("");
     setOperator("");
   };
 
   const OnClick = (event) => {
-    if (
-      typeof Number(event.target.textContent) === "number" &&
-      !secondNum &&
-      !operator
-    ) {
-      setFirstNum(Number(event.target.textContent));
-    } else if (
-      firstNum &&
-      typeof Number(event.target.textContent) === "number" &&
-      operator
-    ) {
-      setSecondNum(Number(event.target.textContent));
+    if (!secondNum && !operator) {
+      if (firstNum === "0") {
+        setFirstNum(event.target.textContent);
+      } else {
+        setFirstNum(firstNum + event.target.textContent);
+      }
+    } else if (firstNum && operator) {
+      setSecondNum(secondNum + Number(event.target.textContent));
     }
   };
 
   const AddMinus = () => {
-    if(firstNum === 0){
+    if (firstNum === 0) {
       return;
     }
-    
+
     if (firstNum !== 0 && !secondNum && !operator) {
       setFirstNum((prev) => "-" + prev);
     } else if (secondNum !== 0) {

@@ -1,9 +1,100 @@
-.body {
+* {
   padding: 0;
   margin: 0;
   background-color: beige;
+  /* height: 100vh; */
 }
 
 .frame {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 500px;
+  height: 100vh;
+  margin: 0 auto;
+  border: 1px black solid;
+  border-radius: 20px;
+  background-color: rgb(27, 22, 22);
+}
 
+.screen {
+  width: 90%;
+  height: 100px;
+  background-color: rgb(27, 22, 22);
+  margin: 2rem 1rem;
+  text-align: right;
+  font-weight: border;
+}
+
+p{
+  color: whitesmoke;
+  background-color: rgb(27, 22, 22);
+  text-align: right;
+  font-size: 60px;
+  padding-top: 60px;
+  padding-right: 30px;
+}
+
+.pad {
+  width: 90%;
+  height: 600px;
+  margin-bottom: 20px;
+  background-color: rgb(27, 22, 22)
+}
+
+.keyPad{
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  width: auto;
+  height: 20%;
+  border-radius: 50px;
+  text-align: center;
+  justify-content:space-around;
+  align-items: center;
+  background-color: rgb(27, 22, 22)
+}
+
+
+button {
+  width: 70px;
+  height: 70px;
+  line-height: 50px;
+  border-radius: 70px;
+  border: 1px solid rgb(82, 82, 82);
+  background-color: rgb(82, 82, 82);
+  color: white;
+  font-weight: bolder;
+  font-size: 30px;
+  margin: 0 auto;
+}
+
+button:hover {
+  background-color: rgb(149, 147, 147);
+}
+
+.keyLine5 {
+ grid-template-columns: 2fr 1fr 1fr;
+}
+
+.zero {
+  width: 180px;
+}
+
+.gray {
+  color: rgba(29, 28, 28, 0.852);
+  background-color: lightgray;
+}
+
+.gray:hover {
+  background-color: rgb(249, 246, 246);
+}
+
+.orange {
+  background-color: rgb(253, 182, 50);
+}
+
+.orange:hover {
+  background-color: rgb(248, 200, 111);
 }

@@ -3,8 +3,8 @@ import './styles.css';
 
 const App = () => {
   const [screenContent, setScreenContent] = useState("0");
-  const [firstNum, setFirstNum] = useState("0");
-  const [secondNum, setSecondNum] = useState("0");
+  const [firstNum, setFirstNum] = useState("");
+  const [secondNum, setSecondNum] = useState("");
 
   const onChange1 = (event) => {
     setFirstNum(event.target.value);
@@ -20,40 +20,40 @@ const App = () => {
   
   
   return (
-    <div className="body">
+    <div>
       <div className="frame">
         <div className="screen">
-          <p className="screenContent"></p>
+          <p className="screenContent">0</p>
         </div>
-        <div className="keys">
-          <ul className="keyLine1">
-            <li>AC</li>
-            <li className="addMinus">+/-</li>
-            <li>%</li>
-            <li className="operator">÷</li>
+        <div className="pad">
+          <ul className="keyPad keyLine1">
+            <button className="gray">AC</button>
+            <button className="gray addMinus">+/-</button>
+            <button className="gray">%</button>
+            <button className="orange operator">÷</button>
           </ul>
-          <ul className="keyLine2">
-            <li>7</li>
-            <li>8</li>
-            <li>9</li>
-            <li className="operator">X</li>
+          <ul className="keyPad keyLine2">
+            <button>7</button>
+            <button>8</button>
+            <button>9</button>
+            <button className="orange operator">✕</button>
           </ul>
-          <ul className="keyLine3">
-            <li>4</li>
-            <li>5</li>
-            <li>6</li>
-            <li className="operator">-</li>
+          <ul className="keyPad keyLine3">
+            <button>4</button>
+            <button>5</button>
+            <button>6</button>
+            <button className="orange operator">–</button>
           </ul>
-          <ul className="keyLine4">
-            <li>1</li>
-            <li>2</li>
-            <li>3</li>
-            <li className="operator">+</li>
+          <ul className="keyPad keyLine4">
+            <button>1</button>
+            <button>2</button>
+            <button>3</button>
+            <button className="orange operator">+</button>
           </ul>
-          <ul className="keyLine5">
-            <li>0</li>
-            <li>.</li>
-            <li>=</li>
+          <ul className="keyPad keyLine5">
+            <button className="zero">0</button>
+            <button>.</button>
+            <button className="orange">=</button>
           </ul>
         </div>
       </div>
